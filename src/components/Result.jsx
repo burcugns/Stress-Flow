@@ -1,8 +1,13 @@
-import React from "react";
-import Calculate from "./Calculate";
+import { useEffect } from "react";
+import Calculate from "../functions/Calculate";
+import saveHistory from "../functions/SaveHistory";
 
 function Result({ responses, questions }) {
   const score = Calculate(responses, questions);
+
+  useEffect(() => {
+    saveHistory(score);
+  }, [score]);
 
   let stressLevel = "";
   let adviceList = [];

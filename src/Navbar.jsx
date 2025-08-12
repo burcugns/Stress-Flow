@@ -7,7 +7,10 @@ import { useNavigate, Link } from "react-router-dom";
 import { FaLeaf } from "react-icons/fa";
 
 function Navbar() {
-  const navigation = [];
+  const navigation = [
+    { name: "Home", href: "home" },
+    { name: "Profile", href: "userpage" },
+  ];
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
