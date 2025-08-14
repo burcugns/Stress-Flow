@@ -2,11 +2,20 @@ import { useState } from "react";
 import firstpageimage from "../image/meditation.png";
 import audio1 from "../music/audio1.mp3";
 import { FaSpa, FaChartLine, FaMusic, FaBook } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/Authcontext";
+import { signOut } from "firebase/auth";
+import { auth } from "../Firebase";
 
 export default function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { currentUser } = useAuth();
+  const navigate = useNavigate();
 
+  const handleLogout = async () => {
+    await signOut(auth);
+    localStorage.clear();
+    navigate("/home");
+  };
   return (
     <div className="bg-gradient-to-b from-blue-100 to-white min-h-screen flex flex-col items-center justify-center px-6 py-12">
       {/* music */}
@@ -41,12 +50,22 @@ export default function Home() {
         >
           Get Started
         </Link>
-        <Link
-          to="/login"
-          className="px-6 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition"
-        >
-          Login
-        </Link>
+
+        {currentUser ? (
+          <button
+            onClick={handleLogout}
+            className="px-6 py-3 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-500 transition"
+          >
+            Logout
+          </button>
+        ) : (
+          <Link
+            to="/login"
+            className="px-6 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition"
+          >
+            Login
+          </Link>
+        )}
       </div>
 
       {/* Features */}

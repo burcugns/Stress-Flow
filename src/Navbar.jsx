@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { auth } from "./Firebase";
 import { useNavigate, Link } from "react-router-dom";
 import { FaLeaf } from "react-icons/fa";
+import { useAuth } from "./context/Authcontext";
 
 function Navbar() {
   const navigation = [
@@ -13,17 +14,14 @@ function Navbar() {
   ];
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [user, setUser] = useState(null);
+  const { currentUser } = useAuth();
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    return onAuthStateChanged(auth, setUser);
-  }, []);
-
   const handleLogout = async () => {
     await signOut(auth);
-    navigate("/");
+    localStorage.clear();
+    navigate("/home");
   };
 
   return (
@@ -34,8 +32,9 @@ function Navbar() {
       >
         {/* logo */}
         <div className="flex lg:flex-1 items-center gap-2">
-          <FaLeaf className="text-blue-500 text-2xl" />
-          <Link to="/" className="text-lg font-bold text-gray-800"></Link>
+          <Link to="/home" className="text-lg font-bold text-gray-800">
+            <FaLeaf className="text-blue-500 text-2xl" />
+          </Link>
         </div>
 
         {/* mobile */}
@@ -65,7 +64,7 @@ function Navbar() {
 
         {/* button login, log out */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-4">
-          {user ? (
+          {currentUser ? (
             <button
               onClick={handleLogout}
               className="px-4 py-2 text-sm font-semibold text-red-600 hover:underline"
@@ -125,7 +124,7 @@ function Navbar() {
                 {item.name}
               </a>
             ))}
-            {user ? (
+            {currentUser ? (
               <button
                 onClick={() => {
                   handleLogout();

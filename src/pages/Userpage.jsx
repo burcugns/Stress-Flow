@@ -1,22 +1,10 @@
 import { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../Firebase";
-import { getAuth } from "firebase/auth";
 
 function Userpage() {
   const [histories, setHistories] = useState([]);
-  const [useremail, setUserEmail] = useState("");
-
-  const getUserEmail = () => {
-    const auth = getAuth();
-    const user = auth.currentUser;
-
-    if (user) {
-      setUserEmail(user.email);
-    } else {
-      setUserEmail("");
-    }
-  };
+  const [email, setEmail] = useState("");
 
   const displayHistory = async () => {
     try {
@@ -30,14 +18,19 @@ function Userpage() {
   };
 
   useEffect(() => {
-    getUserEmail();
     displayHistory();
+    getEmailFromSession();
   }, []);
+
+  const getEmailFromSession = () => {
+    const email = localStorage.getItem("email");
+    setEmail(email);
+  };
 
   return (
     <div className="max-w-xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-xl">
       <div>
-        <h2 className="text-blue-500">User Email: {useremail}</h2>
+        <h2 className="text-blue-500">User Email:{email} </h2>
       </div>
       <div>
         <h1 className="text-green-500 text-3xl">History :</h1>

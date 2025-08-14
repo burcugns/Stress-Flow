@@ -20,6 +20,8 @@ export default function Login() {
       );
       const user = userCredential.user;
       if (user) {
+        localStorage.setItem("email", user.email);
+        localStorage.setItem("uid", user.uid);
         navigate("/userpage");
       }
     } catch (error) {
