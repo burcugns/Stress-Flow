@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { signOut } from "firebase/auth";
-import { auth } from "./Firebase";
 import { useNavigate, Link } from "react-router-dom";
 import { FaLeaf } from "react-icons/fa";
 import { useAuth } from "./context/Authcontext";
+import { handleLogout } from "./functions/handleLogout";
+import AudioPlayer from "./components/AudioPlayer";
 
 function Navbar() {
   const navigation = [
@@ -17,12 +17,6 @@ function Navbar() {
   const { currentUser } = useAuth();
 
   const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    await signOut(auth);
-    localStorage.clear();
-    navigate("/home");
-  };
 
   return (
     <header className="bg-white fixed top-0 inset-x-0 z-50 shadow-sm">
@@ -62,11 +56,12 @@ function Navbar() {
           ))}
         </div>
 
-        {/* button login, log out */}
+        {/* music , login, log out */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-4">
+          <AudioPlayer />
           {currentUser ? (
             <button
-              onClick={handleLogout}
+              onClick={() => handleLogout(navigate)}
               className="px-4 py-2 text-sm font-semibold text-red-600 hover:underline"
             >
               Log out
@@ -78,12 +73,6 @@ function Navbar() {
                 className="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-blue-500"
               >
                 Log in
-              </Link>
-              <Link
-                to="/survey"
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 text-sm font-semibold"
-              >
-                Get Started
               </Link>
             </>
           )}
@@ -124,6 +113,7 @@ function Navbar() {
                 {item.name}
               </a>
             ))}
+            <AudioPlayer />
             {currentUser ? (
               <button
                 onClick={() => {
@@ -141,13 +131,6 @@ function Navbar() {
                   className="block rounded-lg px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
                 >
                   Log in
-                </Link>
-                <Link
-                  to="/survey"
-                  className="block rounded-lg px-3 py-2 bg-blue-600 text-white font-medium hover:bg-blue-500"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Get Started
                 </Link>
               </>
             )}

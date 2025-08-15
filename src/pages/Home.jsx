@@ -1,37 +1,22 @@
-import { useState } from "react";
 import firstpageimage from "../image/meditation.png";
-import audio1 from "../music/audio1.mp3";
 import { FaSpa, FaChartLine, FaMusic, FaBook } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/Authcontext";
-import { signOut } from "firebase/auth";
-import { auth } from "../Firebase";
+import { handleLogout } from "../functions/handleLogout";
 
 export default function Home() {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    await signOut(auth);
-    localStorage.clear();
-    navigate("/home");
-  };
   return (
     <div className="bg-gradient-to-b from-blue-100 to-white min-h-screen flex flex-col items-center justify-center px-6 py-12">
-      {/* music */}
+      {/* image */}
       <div className="flex flex-col items-center">
         <img
           src={firstpageimage}
           alt="Meditation"
-          className="w-64 h-auto object-contain"
+          className="w-72 h-auto object-contain"
         />
-        <div className="mt-4">
-          <audio
-            src={audio1}
-            controls
-            controlsList="nodownload noplaybackrate"
-          ></audio>
-        </div>
       </div>
 
       {/* headline */}
@@ -53,7 +38,7 @@ export default function Home() {
 
         {currentUser ? (
           <button
-            onClick={handleLogout}
+            onClick={() => handleLogout(navigate)}
             className="px-6 py-3 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-500 transition"
           >
             Logout
