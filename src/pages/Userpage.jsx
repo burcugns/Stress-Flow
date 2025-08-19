@@ -20,7 +20,6 @@ function Userpage() {
     try {
       const q = query(collection(db, "userHistory"), where("uid", "==", uid));
       const querySnapshot = await getDocs(q);
-
       const historyList = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),

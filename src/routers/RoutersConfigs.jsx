@@ -4,6 +4,7 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Userpage from "../pages/Userpage";
 import Survey from "../pages/Survey";
+import PrivateRoute from "./PrivateRoute";
 
 function RouterConfig() {
   return (
@@ -12,8 +13,10 @@ function RouterConfig() {
       <Route path="/" element={<Navigate to="/home" replace />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/userpage" element={<Userpage />} />
       <Route path="/survey" element={<Survey />} />
+      <Route element={<PrivateRoute />}>
+        <Route path="/userpage" element={<Userpage />} />
+      </Route>
     </Routes>
   );
 }

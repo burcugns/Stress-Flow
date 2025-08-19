@@ -46,13 +46,13 @@ function Navbar() {
         {/* add menu item here*/}
         <div className="hidden lg:flex lg:gap-x-8">
           {navigation.map((item) => (
-            <a
+            <Link
               key={item.name}
-              href={item.href}
+              to={`/${item.href}`}
               className="text-sm font-medium text-gray-700 hover:text-blue-500"
             >
               {item.name}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -105,13 +105,14 @@ function Navbar() {
           {/* add menu item here */}
           <div className="mt-6 space-y-4">
             {navigation.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
+                to={`/${item.href}`}
+                onClick={() => setMobileMenuOpen(false)}
                 className="block rounded-lg px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
             <AudioPlayer />
             {currentUser ? (
