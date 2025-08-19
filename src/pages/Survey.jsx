@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Result from "../components/Result";
 
 const sharedOptions = [
