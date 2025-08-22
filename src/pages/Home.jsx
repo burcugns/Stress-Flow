@@ -1,5 +1,4 @@
 import firstpageimage from "../image/meditation.png";
-import { FaSpa, FaChartLine, FaMusic, FaBook } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/Authcontext";
 import { handleLogout } from "../functions/handleLogout";
@@ -27,7 +26,7 @@ export default function Home() {
         Start your journey to a calmer mind.
       </p>
 
-      {/* buttons */}
+      {/* Get starter and Log in / Log Out */}
       <div className="mt-6 flex gap-4">
         <Link
           to="/survey"
@@ -51,34 +50,6 @@ export default function Home() {
             Login
           </Link>
         )}
-      </div>
-
-      {/* Features */}
-      <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-6">
-        <div className="flex flex-col items-center bg-white p-4 rounded-xl shadow hover:shadow-md transition">
-          <FaSpa className="text-3xl text-blue-500 mb-2" />
-          <span className="text-sm font-medium text-gray-700">
-            Guided Meditations
-          </span>
-        </div>
-        <div className="flex flex-col items-center bg-white p-4 rounded-xl shadow hover:shadow-md transition">
-          <FaChartLine className="text-3xl text-blue-500 mb-2" />
-          <span className="text-sm font-medium text-gray-700">
-            Mood Tracking
-          </span>
-        </div>
-        <div className="flex flex-col items-center bg-white p-4 rounded-xl shadow hover:shadow-md transition">
-          <FaMusic className="text-3xl text-blue-500 mb-2" />
-          <span className="text-sm font-medium text-gray-700">
-            Calming Music
-          </span>
-        </div>
-        <div className="flex flex-col items-center bg-white p-4 rounded-xl shadow hover:shadow-md transition">
-          <FaBook className="text-3xl text-blue-500 mb-2" />
-          <span className="text-sm font-medium text-gray-700">
-            Wellbeing Tips
-          </span>
-        </div>
       </div>
     </div>
   );
