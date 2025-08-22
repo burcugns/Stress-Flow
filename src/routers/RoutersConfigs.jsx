@@ -2,9 +2,11 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
-import Userpage from "../pages/Userpage";
 import Survey from "../pages/Survey";
 import PrivateRoute from "./PrivateRoute";
+import Userpage from "../pages/Userpage";
+import MoodPage from "../pages/MoodPage";
+import DailyTipsPage from "../pages/DailyTipsPage";
 
 function RouterConfig() {
   return (
@@ -14,8 +16,14 @@ function RouterConfig() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/survey" element={<Survey />} />
+
+      {/* PrivateRoute and nested routes */}
       <Route element={<PrivateRoute />}>
-        <Route path="/userpage" element={<Userpage />} />
+        <Route path="/userpage" element={<Userpage />}>
+          <Route index element={<div></div>} /> {/* Default boş */}
+          <Route path="mood" element={<MoodPage />} />
+          <Route path="dailytips" element={<DailyTipsPage />} />
+        </Route>
       </Route>
     </Routes>
   );
