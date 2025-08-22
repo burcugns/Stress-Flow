@@ -20,7 +20,7 @@ function RouterConfig() {
       {/* PrivateRoute and nested routes */}
       <Route element={<PrivateRoute />}>
         <Route path="/userpage" element={<Userpage />}>
-          <Route index element={<div></div>} /> {/* Default boş */}
+          <Route index element={<div></div>} />
           <Route path="mood" element={<MoodPage />} />
           <Route path="dailytips" element={<DailyTipsPage />} />
         </Route>
