@@ -46,19 +46,19 @@ function Result({ responses, questions }) {
   }
 
   const levelColors = {
-    "Low Stress": "text-green-600 bg-green-100",
+    "Low Stress": "text-green-700 bg-green-100",
     "Moderate Stress": "text-yellow-700 bg-yellow-100",
     "High Stress": "text-red-700 bg-red-100",
   };
 
   return (
-    <div className="max-w-md mx-auto mt-20 mb-20 bg-white rounded-2xl shadow-lg p-8">
-      <h2 className="text-3xl font-extrabold text-gray-900 mb-6 text-center">
+    <div className="max-w-md mx-auto mt-20 mb-20 bg-gradient-to-b from-green-50 to-white rounded-2xl shadow-lg p-8">
+      <h2 className="text-3xl font-extrabold text-green-800 mb-6 text-center">
         Survey Result
       </h2>
 
       <div className="text-center mb-8">
-        <p className="text-lg text-gray-700 mb-2">
+        <p className="text-lg text-green-700 mb-2">
           <span className="font-semibold">Your score:</span> {score}
         </p>
         <p
@@ -69,17 +69,17 @@ function Result({ responses, questions }) {
       </div>
 
       <div>
-        <h3 className="text-xl font-semibold mb-4 text-gray-800 border-b pb-2">
+        <h3 className="text-xl font-semibold mb-4 text-green-800 border-b border-green-200 pb-2">
           Advice for You
         </h3>
         <ul className="space-y-3">
           {adviceList.map((advice, index) => (
             <li
               key={index}
-              className="bg-gray-50 border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300 flex items-center space-x-3"
+              className="bg-green-50 border border-green-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300 flex items-center space-x-3"
             >
               <span className="text-2xl">{adviceEmojis[index]}</span>
-              <span>{advice}</span>
+              <span className="text-green-800">{advice}</span>
             </li>
           ))}
         </ul>

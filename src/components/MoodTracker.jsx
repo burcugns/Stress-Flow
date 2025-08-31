@@ -11,11 +11,11 @@ import {
 } from "@mui/icons-material";
 
 const moodColors = [
-  "bg-[#FFADAD]",
-  "bg-[#FFD6A5]",
-  "bg-[#FDFFB6]",
-  "bg-[#CAFFBF]",
-  "bg-[#9BF6FF]",
+  "bg-red-200", // Very Sad
+  "bg-yellow-200", // Sad
+  "bg-green-100", // Neutral
+  "bg-green-300", // Happy
+  "bg-green-500", // Very Happy
 ];
 const moodNames = ["Very Sad", "Sad", "Neutral", "Happy", "Very Happy"];
 
@@ -43,12 +43,17 @@ function MoodTracker() {
             <IconButton onClick={() => setSelected(index)}>
               <IconComponent
                 className={`rounded-full transition duration-300 mx-2 shadow-md 
-  ${selected === index ? moodColors[index] + " shadow-lg" : "bg-gray-200"}
-`}
+                  ${
+                    selected === index
+                      ? moodColors[index] + " shadow-lg"
+                      : "bg-green-50"
+                  }
+                `}
+                fontSize="large"
               />
             </IconButton>
 
-            <span className="text-sm text-blue-950 mt-1">
+            <span className="text-sm text-green-800 mt-1">
               {moodNames[index]}
             </span>
           </div>
@@ -56,7 +61,7 @@ function MoodTracker() {
       </Box>
       <Button
         variant="contained"
-        color="primary"
+        className={`bg-green-600 text-white hover:bg-green-500`}
         onClick={handleSaveMood}
         disabled={selected === null}
       >

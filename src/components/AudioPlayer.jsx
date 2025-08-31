@@ -22,9 +22,9 @@ export default function AudioPlayer() {
     <div className="flex items-center">
       <button onClick={handleAudio}>
         {isPlaying ? (
-          <IoStopCircleSharp size={30} />
+          <IoStopCircleSharp size={30} className="text-green-800" />
         ) : (
-          <FaRegPlayCircle size={30} />
+          <FaRegPlayCircle size={30} className="text-green-800" />
         )}
       </button>
       <audio ref={audioRef} src={audio1} />
