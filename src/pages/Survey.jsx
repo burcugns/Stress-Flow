@@ -83,16 +83,16 @@ export default function Survey() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white px-4 py-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-green-100 to-white px-4 py-8">
       {showResult ? (
         <Result responses={responses} questions={surveyData} />
       ) : (
         <div className="max-w-lg w-full bg-white rounded-xl shadow-md p-6 pt-12 space-y-8">
-          <div className="text-sm text-gray-500 text-center font-medium">
+          <div className="text-sm text-green-700 text-center font-medium">
             {currentStep} / {totalSteps}
           </div>
 
-          <h2 className="text-xl sm:text-2xl font-semibold text-center text-gray-900">
+          <h2 className="text-xl sm:text-2xl font-semibold text-center text-green-800">
             {currentSurvey.question}
           </h2>
           <div className="grid grid-cols-1 gap-4 mt-6">
@@ -101,8 +101,8 @@ export default function Survey() {
                 key={option}
                 className={`border rounded-lg px-4 py-2 text-sm font-medium transition ${
                   selected === option
-                    ? "bg-blue-600 text-white border-blue-600"
-                    : "text-gray-800 hover:bg-gray-100"
+                    ? "bg-green-600 text-white border-green-600"
+                    : "text-green-800 hover:bg-green-100 border-green-300"
                 }`}
                 onClick={() => handleOptionClick(option)}
               >
@@ -110,23 +110,23 @@ export default function Survey() {
               </button>
             ))}
           </div>
-          <div className="w-full bg-gray-200 h-2 rounded-full mt-6">
+          <div className="w-full bg-green-200 h-2 rounded-full mt-6">
             <div
-              className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+              className="bg-green-600 h-2 rounded-full transition-all duration-300"
               style={{ width: `${(currentStep / totalSteps) * 100}%` }}
             />
           </div>
           <div className="flex justify-between mt-6 mb-4">
             <button
               onClick={handleBack}
-              className="px-4 py-2 border rounded-md text-gray-700 hover:bg-gray-100"
+              className="px-4 py-2 border rounded-md text-green-700 hover:bg-green-100"
               disabled={currentStep === 1}
             >
               ← Back
             </button>
             <button
               onClick={handleNext}
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+              className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-500"
               disabled={!selected}
             >
               {currentStep === totalSteps ? "Finish →" : "Next →"}

@@ -6,7 +6,7 @@ function Userpage() {
   const { currentUser } = useAuth();
 
   return (
-    <div className="flex min-h-screen pt-20">
+    <div className="flex min-h-screen pt-20 bg-gradient-to-b from-green-100 to-white">
       <Sidebar currentUser={currentUser} />
       <MainContent />
     </div>
