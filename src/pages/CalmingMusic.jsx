@@ -58,13 +58,11 @@ function CalmingMusic() {
           {isPlaying ? <Pause size={20} /> : <Play size={20} />}
         </button>
       </div>
-
-      {/* Hidden audio */}
       <audio
         ref={audioRef}
         src={songs[currentIndex].file}
         onEnded={() => setIsPlaying(false)}
-        style={{ display: "none" }} // tamamen gizli
+        style={{ display: "none" }}
       />
     </div>
   );
