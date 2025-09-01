@@ -22,13 +22,14 @@ function MainContent() {
             Mood Tracking
           </span>
         </Link>
-
-        <div className="flex items-center bg-white p-3 rounded-lg shadow hover:shadow-md hover:bg-green-100 transition w-full">
-          <FaMusic className="text-xl text-green-600 mr-3" />
-          <span className="text-sm font-medium text-green-800">
-            Calming Music
-          </span>
-        </div>
+        <Link to="calmingmusic">
+          <div className="flex items-center bg-white p-3 rounded-lg shadow hover:shadow-md hover:bg-green-100 transition w-full">
+            <FaMusic className="text-xl text-green-600 mr-3" />
+            <span className="text-sm font-medium text-green-800">
+              Calming Music
+            </span>
+          </div>
+        </Link>
       </div>
       <Outlet />
     </div>

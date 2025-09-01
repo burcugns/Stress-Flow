@@ -7,6 +7,7 @@ import PrivateRoute from "./PrivateRoute";
 import Userpage from "../pages/Userpage";
 import MoodPage from "../pages/MoodPage";
 import DailyTipsPage from "../pages/DailyTipsPage";
+import CalmingMusic from "../pages/CalmingMusic";
 
 function RouterConfig() {
   return (
@@ -23,6 +24,7 @@ function RouterConfig() {
           <Route index element={<div></div>} />
           <Route path="mood" element={<MoodPage />} />
           <Route path="dailytips" element={<DailyTipsPage />} />
+          <Route path="calmingmusic" element={<CalmingMusic />} />
         </Route>
       </Route>
     </Routes>
