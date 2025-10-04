@@ -1,4 +1,3 @@
-import firstpageimage from "../image/meditation.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/Authcontext";
 import { handleLogout } from "../functions/handleLogout";
@@ -30,7 +29,7 @@ export default function Home() {
           to="/survey"
           className="px-6 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-500 transition"
         >
-          Get Started
+          🧘‍♀️ Get Started
         </Link>
 
         {currentUser ? (
@@ -38,14 +37,14 @@ export default function Home() {
             onClick={() => handleLogout(navigate)}
             className="px-6 py-3 bg-green-700 text-white rounded-lg font-semibold hover:bg-green-600 transition"
           >
-            Logout
+            🔓 Logout
           </button>
         ) : (
           <Link
             to="/login"
             className="px-6 py-3 bg-white border border-green-300 text-green-700 rounded-lg font-semibold hover:bg-green-50 transition"
           >
-            Login
+            🔐 Login
           </Link>
         )}
       </div>
