@@ -33,37 +33,88 @@ function CalmingMusic() {
     setTimeout(() => audioRef.current.play(), 100);
   };
   return (
-    <div className="bg-green-50 min-h-screen flex flex-col items-center p-4">
-      <ul className="w-full max-w-md space-y-2">
-        {songs.map((song, index) => (
-          <li
-            key={index}
-            onClick={() => playSong(index)}
-            className={`p-2 text-sm rounded cursor-pointer transition ${
-              currentIndex === index
-                ? "bg-green-600 text-white"
-                : "bg-white border border-green-200 hover:bg-green-100"
-            }`}
-          >
-            {song.title}
-          </li>
-        ))}
-      </ul>
-      <div className="fixed bottom-4 w-full max-w-md bg-green-700 text-white p-3 rounded flex items-center justify-between shadow-md">
-        <p className="text-sm font-semibold">{songs[currentIndex].title}</p>
-        <button
-          onClick={togglePlay}
-          className="p-2 bg-white text-green-700 rounded-full"
-        >
-          {isPlaying ? <Pause size={20} /> : <Play size={20} />}
-        </button>
+    <div className="bg-gradient-to-br from-green-50 via-white to-green-100 min-h-screen p-6">
+      <div className="max-w-4xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-8 fade-in-up">
+          <h1 className="text-4xl font-bold text-green-800 mb-4">🎵 Calming Music</h1>
+          <p className="text-lg text-green-700">Relax and unwind with our curated collection of meditation tracks</p>
+        </div>
+
+        {/* Music Library */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+          {songs.map((song, index) => (
+            <div
+              key={index}
+              onClick={() => playSong(index)}
+              className={`p-4 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105 ${
+                currentIndex === index
+                  ? "bg-gradient-to-r from-green-600 to-green-700 text-white shadow-xl scale-105"
+                  : "bg-white border-2 border-green-200 hover:bg-green-50 hover:border-green-300 hover:shadow-lg"
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                    currentIndex === index ? "bg-white bg-opacity-20" : "bg-green-100"
+                  }`}>
+                    <span className="text-2xl">
+                      {currentIndex === index && isPlaying ? "🎵" : "🎶"}
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg">{song.title}</h3>
+                    <p className="text-sm opacity-75">Meditation Track</p>
+                  </div>
+                </div>
+                {currentIndex === index && (
+                  <div className="text-2xl">
+                    {isPlaying ? "⏸️" : "▶️"}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Now Playing Card */}
+        <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-white rounded-2xl shadow-2xl border-2 border-green-200 p-4 fade-in-up">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-xl flex items-center justify-center">
+                <span className="text-2xl">
+                  {isPlaying ? "🎵" : "🎶"}
+                </span>
+              </div>
+              <div>
+                <h3 className="font-bold text-green-800 text-lg">{songs[currentIndex].title}</h3>
+                <p className="text-green-600 text-sm">Now Playing</p>
+              </div>
+            </div>
+            <button
+              onClick={togglePlay}
+              className="w-12 h-12 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-full flex items-center justify-center hover:from-green-700 hover:to-green-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-110"
+            >
+              {isPlaying ? <Pause size={24} /> : <Play size={24} />}
+            </button>
+          </div>
+          
+          {/* Progress bar placeholder */}
+          <div className="mt-4">
+            <div className="w-full bg-green-200 h-1 rounded-full">
+              <div className="bg-gradient-to-r from-green-500 to-green-600 h-1 rounded-full w-1/3"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Audio element */}
+        <audio
+          ref={audioRef}
+          src={songs[currentIndex].file}
+          onEnded={() => setIsPlaying(false)}
+          style={{ display: "none" }}
+        />
       </div>
-      <audio
-        ref={audioRef}
-        src={songs[currentIndex].file}
-        onEnded={() => setIsPlaying(false)}
-        style={{ display: "none" }}
-      />
     </div>
   );
 }
